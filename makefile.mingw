@@ -1,0 +1,27 @@
+
+LDFLAGS += -mwindows -mconsole
+FLAGS += -s -O3 -Wall -ffast-math
+
+3de.exe : main.o engine.o gdi.o 3d_helper.o phys_helper.o wthreads.o vector_matrix.o
+	gcc -o 3de.exe ${FLAGS} ${LDFLAGS} main.o engine.o gdi.o 3d_helper.o phys_helper.o wthreads.o vector_matrix.o
+
+main.o : main.c
+	gcc -c -o main.o ${FLAGS} ${LDFLAGS} main.c
+
+engine.o : engine.c
+	gcc -c -o engine.o ${FLAGS} ${LDFLAGS} engine.c
+
+gdi.o : gdi.c
+	gcc -c -o gdi.o ${FLAGS} ${LDFLAGS} gdi.c
+
+3d_helper.o: 3d_helper.c
+	gcc -c -o 3d_helper.o ${FLAGS} ${LDFLAGS} 3d_helper.c
+
+phys_helper.o: phys_helper.c
+	gcc -c -o phys_helper.o ${FLAGS} ${LDFLAGS} phys_helper.c
+
+wthreads.o : wthreads.c
+	gcc -c -o wthreads.o ${FLAGS} ${LDFLAGS} wthreads.c
+
+vector_matrix.o: vector_matrix.c
+	gcc -c -o vector_matrix.o ${FLAGS} ${LDFLAGS} vector_matrix.c
