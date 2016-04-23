@@ -47,8 +47,8 @@ int num_faces;
 pVector points;
 pVector hom_points;
 
-pVector normals; /*Eckennormalen*/
-pVector transf_normals;
+//pVector normals; /*Eckennormalen*/
+//pVector transf_normals;
 
 int * faces_list;
 };

@@ -54,15 +54,15 @@ int main()
 	real lookat[4]={0.0, 0.0, 0.0, 1.0};
 	real vup[4]={0.0, -1.0, 0.0,1.0};
 
-	pVector wing_colors = LoadColorFile("wings.color");
-	pTriangleStrip wing_strip = LoadTriangleStrip("wings.strip");
+	pVector wing_colors = LoadColorFile("models/wings.color");
+	pTriangleStrip wing_strip = LoadTriangleStrip("models/wings.strip");
 	
-	pVector cone_colors = LoadColorFile("cone.color");
-	pTriangleStrip cone_strip = LoadTriangleStrip("cone.strip");
+	pVector cone_colors = LoadColorFile("models/cone.color");
+	pTriangleStrip cone_strip = LoadTriangleStrip("models/cone.strip");
 	
 	
-	pVector star_colors = LoadColorFile("star.color");
-	pTriangleStrip star_strip = LoadTriangleStrip("star.strip");
+	pVector star_colors = LoadColorFile("models/star.color");
+	pTriangleStrip star_strip = LoadTriangleStrip("models/star.strip");
 	
 	
 	RenderTree troot;

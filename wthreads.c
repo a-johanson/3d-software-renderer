@@ -48,7 +48,7 @@ void WorkerThread(void * tin)
 /* Returns the number of threads created. */
 int CreateWorkerThreads()
 {
-	int threadid,i;
+	unsigned int threadid, i;
 	SYSTEM_INFO sysinf;
 	
 	
@@ -62,7 +62,7 @@ int CreateWorkerThreads()
 	if((wthread = (ThreadInfo *)malloc(sysinf.dwNumberOfProcessors*sizeof(ThreadInfo)))==NULL)
 			return 0;
 
-	for(i=0; i<sysinf.dwNumberOfProcessors; i++)
+	for(i=0; i<sysinf.dwNumberOfProcessors; ++i)
 	{
 		wthread[i].task=0;
 		if(_beginthreadex( NULL, 0, (void *)WorkerThread, &wthread[i], 0, &threadid )==0)
@@ -76,9 +76,9 @@ int CreateWorkerThreads()
 
 void WaitForThreadsToFinish()
 {
-	int i;
+	unsigned int i;
 	
-	for(i=0; i<thread_num; i++)
+	for(i=0; i<thread_num; ++i)
 	{
 		while(wthread[i].task!=0)
 		{
@@ -90,10 +90,10 @@ void WaitForThreadsToFinish()
 
 void AssignTask_RasterTriangle(pVector a, pVector b, pVector c, pVector ca, pVector cb, pVector cc)
 {
-	int i;
+	unsigned int i;
 	
 	do {
-		for(i=0; i<thread_num; i++)
+		for(i=0; i<thread_num; ++i)
 		{
 			if(wthread[i].task==0)
 				break;

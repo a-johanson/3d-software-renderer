@@ -257,7 +257,7 @@ void aglDrawTriangle(pVector a, pVector b, pVector c, pVector colora, pVector co
 	{
 		for(i=(ay<=0 ? 0 : ay); i<=by && i<surface_height; i++)
 		{
-			/*Berechne linken Punkt auf Linie ab */
+			/* Berechne linken Punkt auf Linie ab */
 			p1x = ax + (int)(((real)(i - ay)/(real)(by - ay))*(real)(bx-ax));
 			p2x = ax + (int)(((real)(i - ay)/(real)(cy - ay))*(real)(cx-ax));
 			if(p2x < p1x)
@@ -358,8 +358,8 @@ pMesh Create_Mesh(int num_pts, int num_faces)
 	mesh->points=Vector_Create(num_pts*3);
 	mesh->hom_points=Vector_Create(num_pts*4);
 	
-	mesh->normals=Vector_Create(num_pts*3);
-	mesh->transf_normals=Vector_Create(num_pts*3);
+	//mesh->normals=Vector_Create(num_pts*3);
+	//mesh->transf_normals=Vector_Create(num_pts*3);
 	
 	mesh->faces_list=(int *)malloc(num_faces*3*sizeof(int));
 	
@@ -370,8 +370,8 @@ pMesh Create_Mesh(int num_pts, int num_faces)
 void Destroy_Mesh(pMesh mesh)
 {
 	free(mesh->faces_list);
-	free(mesh->transf_normals);
-	free(mesh->normals);
+	//free(mesh->transf_normals);
+	//free(mesh->normals);
 	free(mesh->hom_points);
 	free(mesh->points);
 	free(mesh);
@@ -459,8 +459,8 @@ void doRenderTree(pRenderTree tree)
 		{
 			for(i=0; i<tempt->mesh->num_pts; i++)
 			{
-				MatrixVectorMult4x3_Project(tempt->mesh->hom_points+(i*4), tempt->m_temp, tempt->mesh->points+(i*3));
-				MatrixVectorMult3x3(tempt->mesh->transf_normals+(i*3), tempt->m_temp, tempt->mesh->normals+(i*3));
+				//MatrixVectorMult4x3_Project(tempt->mesh->hom_points+(i*4), tempt->m_temp, tempt->mesh->points+(i*3));
+				//MatrixVectorMult3x3(tempt->mesh->transf_normals+(i*3), tempt->m_temp, tempt->mesh->normals+(i*3));
 				
 				tempt->mesh->hom_points[i*4] = xres*0.5 + tempt->mesh->hom_points[i*4] * ((xres)/(2.0*tan(fov2)*tempt->mesh->hom_points[(i*4)+2]));
 				tempt->mesh->hom_points[(i*4)+1] = yres*0.5 + tempt->mesh->hom_points[(i*4)+1] * ((yres)/(2.0*tan(fov2*aspect_ratio)*tempt->mesh->hom_points[(i*4)+2]));
@@ -489,7 +489,7 @@ void doRenderTree(pRenderTree tree)
 void Render_TStrip(pTriangleStrip strip, pVector colors)
 {
 	int i;
-	int old, middle=0, young=0;
+	int old=0, middle=0, young=0;
 	
 	for(i=0; i<strip->len; i++)
 	{
